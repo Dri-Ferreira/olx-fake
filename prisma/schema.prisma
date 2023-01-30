@@ -1,0 +1,45 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  name String @db.VarChar(255)
+  email String @unique @db.VarChar(255)
+  state String @db.VarChar(255)
+  passwordHash String @db.VarChar(255)
+  token String
+}
+
+model States {
+  id String @id @default(uuid())
+  name String @db.VarChar(255)
+}
+
+model Categories {
+  id String @id @default(uuid())
+  name String @db.VarChar(255)
+  slug String @db.VarChar(255)
+}
+
+model Advertisements {
+  id String @id @default(uuid())
+  idUser String
+  state String
+  category String
+  images Json[]
+  dateCreated DateTime
+  title String @db.VarChar(255)
+  price Int 
+  priceNegotiable Boolean
+  description String @db.VarChar(255)
+  views Int
+  status String @db.VarChar(255)
+
+}
