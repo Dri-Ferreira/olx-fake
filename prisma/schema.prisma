@@ -15,17 +15,23 @@ model User {
   state String @db.VarChar(255)
   passwordHash String @db.VarChar(255)
   token String
+
+  @@map("user")
 }
 
 model States {
   id String @id @default(uuid())
   name String @db.VarChar(255)
+
+  @@map("states")
 }
 
 model Categories {
   id String @id @default(uuid())
   name String @db.VarChar(255)
   slug String @db.VarChar(255)
+
+  @@map("categories")
 }
 
 model Advertisements {
@@ -41,5 +47,7 @@ model Advertisements {
   description String @db.VarChar(255)
   views Int
   status String @db.VarChar(255)
+
+  @@map("advertisements")
 
 }
