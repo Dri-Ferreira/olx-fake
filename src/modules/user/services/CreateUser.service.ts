@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { UserRepository } from '../respositories/User.respository';
+import { UserRepository } from '../respository/User.respository';
 import { ICreateUserService } from '../structures/service.structure';
-import { createUserParams } from '../types/paramsn-types';
+import { createUserParams } from '../types/user-params-types';
 
 Injectable();
 export class CreateUserService implements ICreateUserService {
