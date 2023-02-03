@@ -13,7 +13,7 @@ model User {
   email        String @unique @db.VarChar(255)
   state        String @db.VarChar(255)
   passwordHash String @db.VarChar(255)
-  token        String
+  
 
   @@map("user")
 }
