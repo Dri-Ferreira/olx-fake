@@ -9,7 +9,7 @@ export class StatesController {
     private readonly createStatesService: CreateStatesService,
   ) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createStateDto: CreateStateDto) {
     return this.createStatesService.execute(createStateDto);
   }

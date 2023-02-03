@@ -9,6 +9,12 @@ export class StatesRepositoy implements IstatesRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   createStates(params: createStatesParams): Promise<States> {
-    return;
+    return this.prisma.states.create({
+      data: { ...params },
+    });
+  }
+
+  searchStates(params: createStatesParams): Promise<States | null> {
+    return this.prisma.states.findFirst({ where: { name: params.name } });
   }
 }
