@@ -7,8 +7,18 @@ import { createUserParams } from '../types/user-params-types';
 @Injectable()
 export class UserRepository implements IUserRepository {
   constructor(private readonly prisma: PrismaService) {}
-  createUser(params: createUserParams): Promise<User> {
-    return;
+  create(params: createUserParams): Promise<User> {
+    const data = {
+      name: params.name,
+      email: params.email,
+      state: params.state,
+    };
+    return this.prisma.user.create({
+      data: {
+        ...data,
+        passwordHash: params.passwordHash,
+      },
+    });
   }
 
   async getAllStates(): Promise<Partial<States[]>> {

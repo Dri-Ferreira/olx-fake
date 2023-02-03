@@ -12,7 +12,7 @@ export class UserController {
     private readonly getStatesService: GetStatesAllService,
   ) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createUserDto: CreateUserDto) {
     return this.createUserService.execute(createUserDto);
   }
