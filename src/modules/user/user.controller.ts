@@ -9,7 +9,7 @@ export class UserController {
     @Inject(CreateUserService)
     private readonly createUserService: CreateUserService,
     @Inject(GetStatesAllService)
-    private readonly getStatesService: GetStatesAllService
+    private readonly getStatesService: GetStatesAllService,
   ) {}
 
   @Post()
@@ -17,7 +17,7 @@ export class UserController {
     return this.createUserService.execute(createUserDto);
   }
 
-  @Get('teste')
+  @Get('search')
   getAllStates() {
     return this.getStatesService.execute();
   }

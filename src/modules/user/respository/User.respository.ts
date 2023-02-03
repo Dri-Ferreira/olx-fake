@@ -12,6 +12,11 @@ export class UserRepository implements IUserRepository {
   }
 
   async getAllStates(): Promise<Partial<States[]>> {
-    return this.prisma.states.findMany();
+    const tudo = this.prisma.states.findMany({
+      orderBy: {
+        name: 'asc',
+      },
+    });
+    return tudo;
   }
 }
