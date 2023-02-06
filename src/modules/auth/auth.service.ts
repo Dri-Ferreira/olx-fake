@@ -34,7 +34,7 @@ export class AuthService implements ILoginService {
       },
       privatekey,
       {
-        expiresIn: '20s',
+        expiresIn: '30m',
       },
     );
     return { token };

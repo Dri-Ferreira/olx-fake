@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { PrismaService } from 'src/database/prisma.service';
+import { JwtStrategy } from 'src/middleware/jwt.strategy';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { AuthRepository } from './repository/auth.repository';
@@ -12,8 +12,8 @@ import { AuthRepository } from './repository/auth.repository';
   providers: [
     AuthController,
     AuthService,
+    JwtStrategy,
     AuthRepository,
-    JwtService,
     PrismaService,
   ],
 })

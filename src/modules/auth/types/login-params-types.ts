@@ -6,3 +6,8 @@ export type ILoginParams = {
 export type ILoginResponse = {
   token: string;
 };
+
+export type ITokenValidade = {
+  id: string;
+  name: string;
+};
