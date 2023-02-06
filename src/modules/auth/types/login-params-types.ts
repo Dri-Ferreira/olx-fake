@@ -1,6 +1,6 @@
 export type ILoginParams = {
   email: string;
-  passwaordHash: string;
+  password: string;
 };
 
 export type ILoginResponse = {

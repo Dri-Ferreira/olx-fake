@@ -4,9 +4,11 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { AdvertisementsModule } from './modules/advertisements/advertisements.module';
 import { StatesModule } from './modules/states/states.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     UserModule,
     AdvertisementsModule,
     CategoriesModule,

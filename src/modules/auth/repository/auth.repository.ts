@@ -7,6 +7,6 @@ import { IAuthRepository } from '../structure/repository.strucuture';
 export class AuthRepository implements IAuthRepository {
   constructor(private readonly prisma: PrismaService) {}
   existsUser(where: Partial<User>): Promise<User> {
-    throw new Error('Method not implemented.');
+    return this.prisma.user.findUnique({ where });
   }
 }
