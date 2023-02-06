@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { UserRepository } from '../respository/User.respository';
 import { ICreateUserService } from '../structures/service.structure';
@@ -11,6 +11,10 @@ export class CreateUserService implements ICreateUserService {
     @Inject(UserRepository) private readonly userRepository: UserRepository,
   ) {}
   async execute(params: createUserParams): Promise<Partial<User>> {
+    const existsUser = await this.userRepository.findByEmail(params);
+    if (existsUser) {
+      throw new BadRequestException('Email already exists!');
+    }
     const passwordHash = await bcrypt.hash(params.passwordHash, 10);
     const user = await this.userRepository.create({
       name: params.name,

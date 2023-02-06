@@ -4,3 +4,7 @@ export type createUserParams = {
   state: string;
   passwordHash: string;
 };
+
+export type IFindByEmail = {
+  email: string;
+};
