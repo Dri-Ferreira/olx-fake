@@ -22,6 +22,6 @@ export class CreateUserService implements ICreateUserService {
       state: params.state,
       passwordHash: passwordHash,
     });
-    return user;
+    return { ...user, passwordHash: undefined };
   }
 }
