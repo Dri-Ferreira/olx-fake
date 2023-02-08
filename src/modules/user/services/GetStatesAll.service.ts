@@ -9,6 +9,6 @@ export class GetStatesAllService implements IGetStatesService {
     @Inject(UserRepository) private readonly userRepository: UserRepository,
   ) {}
   async execute(): Promise<Partial<States[]>> {
-    return this.userRepository.getAllStates();
+    return await this.userRepository.getAllStates();
   }
 }
