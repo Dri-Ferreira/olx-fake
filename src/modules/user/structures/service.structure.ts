@@ -7,3 +7,7 @@ export interface ICreateUserService {
 export interface IGetStatesService {
   execute(): Promise<Partial<States[]>>;
 }
+
+export interface IGetUsersService {
+  execute(): Promise<Partial<User[]>>;
+}

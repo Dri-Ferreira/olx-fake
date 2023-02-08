@@ -6,4 +6,5 @@ export interface IUserRepository {
   create(params: createUserParams): Promise<User>;
   getAllStates(): Promise<Partial<States[]>>;
   findByEmail(params: IFindByEmail): Promise<User | null>;
+  getAllUser(): Promise<Partial<User[]>>;
 }
