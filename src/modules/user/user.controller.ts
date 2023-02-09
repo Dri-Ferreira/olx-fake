@@ -5,7 +5,7 @@ import { GetStatesAllService } from './services/GetStatesAll.service';
 import { JwtAuthGuard } from 'src/middleware/jwt-auth.guard';
 import { GetAllUsersService } from './services/GetAllUsers.service';
 
-@Controller('user')
+@Controller('v1/user')
 export class UserController {
   constructor(
     @Inject(CreateUserService)
@@ -17,7 +17,7 @@ export class UserController {
   ) {}
 
   @UseGuards(JwtAuthGuard)
-  @Post('create')
+  @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.createUserService.execute(createUserDto);
   }
@@ -28,7 +28,7 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('userSearch')
+  @Get('searchAllUsers')
   getAllUsers() {
     return this.getAllUsersService.execute();
   }
