@@ -5,6 +5,7 @@ import { UserRepository } from './respository/User.respository';
 import { PrismaService } from 'src/database/prisma.service';
 import { GetStatesAllService } from './services/GetStatesAll.service';
 import { GetAllUsersService } from './services/GetAllUsers.service';
+import { GetUserIdService } from './services/GetUserId.service';
 
 @Module({
   controllers: [UserController],
@@ -13,6 +14,7 @@ import { GetAllUsersService } from './services/GetAllUsers.service';
     UserRepository,
     GetStatesAllService,
     GetAllUsersService,
+    GetUserIdService,
     PrismaService,
   ],
 })

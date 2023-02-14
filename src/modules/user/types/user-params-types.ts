@@ -8,3 +8,7 @@ export type createUserParams = {
 export type IFindByEmail = {
   email: string;
 };
+
+export type GetIdParams = {
+  id: string;
+};

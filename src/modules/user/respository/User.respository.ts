@@ -3,7 +3,11 @@ import { States, User } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import exclude from 'src/validations/excludeProperties';
 import { IUserRepository } from '../structures/repository.structure';
-import { createUserParams, IFindByEmail } from '../types/user-params-types';
+import {
+  createUserParams,
+  GetIdParams,
+  IFindByEmail,
+} from '../types/user-params-types';
 
 @Injectable()
 export class UserRepository implements IUserRepository {
@@ -17,12 +21,11 @@ export class UserRepository implements IUserRepository {
   }
 
   getAllStates(): Promise<Partial<States[]>> {
-    const search = this.prisma.states.findMany({
+    return this.prisma.states.findMany({
       orderBy: {
         name: 'asc',
       },
     });
-    return search;
   }
 
   async getAllUser(): Promise<Partial<User[]>> {
@@ -32,9 +35,13 @@ export class UserRepository implements IUserRepository {
       },
     });
 
-    for (let i = 0; i < search.length; i++) {
-      exclude(search[i], 'passwordHash');
-    }
+    search.map((user) => {
+      exclude(user, 'passwordHash');
+    });
     return search;
+  }
+
+  getUserId(params: GetIdParams): Promise<Partial<User>> {
+    return this.prisma.user.findUnique({ where: { id: params.id } });
   }
 }

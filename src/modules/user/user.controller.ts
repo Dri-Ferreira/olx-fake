@@ -1,9 +1,19 @@
-import { Controller, Post, Body, Get, Inject, UseGuards } from '@nestjs/common';
+import { GetIdParams } from './types/user-params-types';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Inject,
+  UseGuards,
+  Param,
+} from '@nestjs/common';
 import { CreateUserService } from './services/CreateUser.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetStatesAllService } from './services/GetStatesAll.service';
 import { JwtAuthGuard } from 'src/middleware/jwt-auth.guard';
 import { GetAllUsersService } from './services/GetAllUsers.service';
+import { GetUserIdService } from './services/GetUserId.service';
 
 @Controller('v1/user')
 export class UserController {
@@ -14,6 +24,8 @@ export class UserController {
     private readonly getStatesService: GetStatesAllService,
     @Inject(GetAllUsersService)
     private readonly getAllUsersService: GetAllUsersService,
+    @Inject(GetUserIdService)
+    private readonly getUserIdService: GetUserIdService,
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -27,9 +39,15 @@ export class UserController {
     return this.getStatesService.execute();
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get('searchAllUsers')
   getAllUsers() {
     return this.getAllUsersService.execute();
+  }
+
+  //@UseGuards(JwtAuthGuard)
+  @Get('searchId/:id')
+  getUserId(@Param() id: GetIdParams) {
+    return this.getUserIdService.execute(id);
   }
 }
