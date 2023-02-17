@@ -42,6 +42,8 @@ export class UserRepository implements IUserRepository {
   }
 
   getUserId(params: GetIdParams): Promise<Partial<User>> {
-    return this.prisma.user.findUnique({ where: { id: params.id } });
+    return this.prisma.user.findUnique({
+      where: { id: params.id },
+    });
   }
 }

@@ -28,8 +28,7 @@ export class UserController {
     private readonly getUserIdService: GetUserIdService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
-  @Post()
+  @Post('create')
   create(@Body() createUserDto: CreateUserDto) {
     return this.createUserService.execute(createUserDto);
   }
@@ -39,13 +38,13 @@ export class UserController {
     return this.getStatesService.execute();
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('searchAllUsers')
   getAllUsers() {
     return this.getAllUsersService.execute();
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('searchId/:id')
   getUserId(@Param() id: GetIdParams) {
     return this.getUserIdService.execute(id);
