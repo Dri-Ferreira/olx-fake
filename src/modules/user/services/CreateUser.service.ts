@@ -12,7 +12,9 @@ export class CreateUserService implements ICreateUserService {
     @Inject(UserRepository) private readonly userRepository: IUserRepository,
   ) {}
   async execute(params: createUserParams): Promise<Partial<User>> {
-    const existsUser = await this.userRepository.findByEmail(params);
+    const existsUser = await this.userRepository.existUser({
+      email: params.email,
+    });
     if (existsUser) {
       throw new BadRequestException('Email already exists!');
     }
