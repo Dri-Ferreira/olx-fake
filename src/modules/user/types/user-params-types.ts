@@ -5,10 +5,6 @@ export type createUserParams = {
   passwordHash: string;
 };
 
-export type IFindByEmail = {
-  email: string;
-};
-
 export type GetIdParams = {
   id: string;
 };

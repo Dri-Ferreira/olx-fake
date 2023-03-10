@@ -1,1 +1,3 @@
-export class CreateAdvertisementDto {}
+export class CreateAdvertisementDto {
+  id: string;
+}
