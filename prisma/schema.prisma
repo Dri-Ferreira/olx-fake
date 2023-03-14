@@ -8,13 +8,13 @@ datasource db {
 }
 
 model User {
-  id           String @id @default(uuid()) 
-  name         String @db.VarChar(255)
-  email        String @unique @db.VarChar(255)
-  state        String @db.VarChar(255)
-  passwordHash String @db.VarChar(255)
-  advertisements Json[]
-  
+  id               String           @id @default(uuid())
+  name             String           @db.VarChar(255)
+  email            String           @unique @db.VarChar(255)
+  state            String           @db.VarChar(255)
+  passwordHash     String           @db.VarChar(255)
+  advertisements   Json[]
+  Advertisements   Advertisements[]
 
   @@map("user")
 }
@@ -36,7 +36,6 @@ model Categories {
 
 model Advertisements {
   id              String   @id @default(uuid())
-  idUser          String
   state           String
   category        String
   images          Json[]
@@ -47,6 +46,8 @@ model Advertisements {
   description     String   @db.VarChar(255)
   views           Int
   status          String   @db.VarChar(255)
+  User            User?    @relation(fields: [userId], references: [id])
+  userId          String?
 
   @@map("advertisements")
 }
