@@ -20,9 +20,7 @@ export class CreateUserService implements ICreateUserService {
     }
     const passwordHash = await bcrypt.hash(params.passwordHash, 10);
     const user = await this.userRepository.create({
-      name: params.name,
-      email: params.email,
-      state: params.state,
+      ...params,
       passwordHash: passwordHash,
     });
     return { ...user, passwordHash: undefined };

@@ -1,10 +1,11 @@
 import { Inject, Injectable, ForbiddenException } from '@nestjs/common';
-import { AuthRepository } from './repository/auth.repository';
-import { IAuthRepository } from './structure/repository.strucuture';
-import { ILoginService } from './structure/service.structure';
-import { ILoginParams, ILoginResponse } from './types/login-params-types';
+import { AuthRepository } from '../repository/auth.repository';
+import { IAuthRepository } from '../structure/repository.strucuture';
+import { ILoginService } from '../structure/service.structure';
+import { ILoginParams, ILoginResponse } from '../types/login-params-types';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
+import { decode } from 'punycode';
 
 @Injectable()
 export class AuthService implements ILoginService {
