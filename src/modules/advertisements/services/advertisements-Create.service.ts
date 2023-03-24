@@ -1,16 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { Advertisements } from '@prisma/client';
 import { AdsRepository } from '../repository/Ads.repository';
-import { ICreateAdvertisementsService } from '../structure/service.structure';
-import { createAdsParams } from '../types/ads-params-types';
+import { IAdsRepository } from '../structure/repository.structure';
+import { createAdsBodyParams } from '../types/ads-params-types';
 
 @Injectable()
-export class AdvertisementsCreateService
-  implements ICreateAdvertisementsService
-{
+export class AdvertisementsCreateService {
   constructor(
-    @Inject(AdsRepository) private readonly adsRepository: AdsRepository,
+    @Inject(AdsRepository) private readonly adsRepository: IAdsRepository,
   ) {}
-  execute(params: createAdsParams): Promise<any> {
-    throw new Error('Method not implemented.');
+  async execute(data: createAdsBodyParams): Promise<Advertisements> {
+    return await this.adsRepository.registerAds(data);
   }
 }

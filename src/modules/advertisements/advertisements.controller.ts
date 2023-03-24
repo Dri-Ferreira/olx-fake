@@ -1,15 +1,17 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Param, Inject } from '@nestjs/common';
 import { AdvertisementsCreateService } from './services/advertisements-Create.service';
 import { CreateAdvertisementDto } from './dto/create-advertisement.dto';
+import { ICreateAdvertisementsService } from './structure/service.structure';
 
 @Controller('advertisements')
 export class AdvertisementsController {
   constructor(
-    private readonly advertisementsService: AdvertisementsCreateService,
+    @Inject(AdvertisementsCreateService)
+    private readonly advertisementsService: ICreateAdvertisementsService,
   ) {}
 
-  @Post()
-  create(@Body() createAdvertisementDto: CreateAdvertisementDto) {
-    return this.advertisementsService.execute(createAdvertisementDto);
+  @Post('createAnuncio')
+  create(@Body() data: CreateAdvertisementDto) {
+    return this.advertisementsService.execute({ ...data });
   }
 }

@@ -3,14 +3,14 @@ export type createAdsParams = {
 };
 
 export type createAdsBodyParams = {
+  user: string;
   state: string;
   category: string;
   images: string;
-  dateCreated: Date;
   title: string;
-  price: number;
+  price: string;
   priceNegotiable: boolean;
   description: string;
-  views: number;
+  views: string;
   status: string;
 };

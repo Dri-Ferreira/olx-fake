@@ -1,5 +1,6 @@
-import { createAdsParams } from '../types/ads-params-types';
+import { Advertisements } from '@prisma/client';
+import { createAdsBodyParams } from '../types/ads-params-types';
 
 export interface IAdsRepository {
-  create(params: createAdsParams): Promise<any>;
+  registerAds(data: createAdsBodyParams): Promise<Advertisements>;
 }
