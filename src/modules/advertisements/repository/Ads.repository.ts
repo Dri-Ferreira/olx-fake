@@ -17,7 +17,11 @@ export class AdsRepository implements IAdsRepository {
       where: {
         id: data.user,
       },
-      data: { ads: ads.id },
+      data: {
+        ads: {
+          push: [ads.id],
+        },
+      },
     });
     return ads;
   }
