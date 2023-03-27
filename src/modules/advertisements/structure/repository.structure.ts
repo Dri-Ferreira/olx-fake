@@ -1,4 +1,4 @@
-import { Advertisements } from '@prisma/client';
+import { Advertisements, User } from '@prisma/client';
 import {
   createAdsBodyParams,
   createAdsParams,
@@ -9,4 +9,6 @@ export interface IAdsRepository {
     param: createAdsParams,
     data: createAdsBodyParams,
   ): Promise<Advertisements>;
+
+  existAccount(where: Partial<User> | any): Promise<User>;
 }

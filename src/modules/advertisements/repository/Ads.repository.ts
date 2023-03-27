@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Advertisements } from '@prisma/client';
+import { Advertisements, User } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import { IAdsRepository } from '../structure/repository.structure';
 import {
@@ -10,6 +10,12 @@ import {
 @Injectable()
 export class AdsRepository implements IAdsRepository {
   constructor(private readonly prisma: PrismaService) {}
+  async existAccount(where: Partial<User> | any): Promise<User> {
+    return await this.prisma.user.findFirst({
+      where,
+    });
+  }
+
   async registerAds(
     param: createAdsParams,
     data: createAdsBodyParams,

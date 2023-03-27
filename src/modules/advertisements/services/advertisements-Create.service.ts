@@ -1,4 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Advertisements } from '@prisma/client';
 import { AdsRepository } from '../repository/Ads.repository';
 import { IAdsRepository } from '../structure/repository.structure';
@@ -16,6 +21,14 @@ export class AdvertisementsCreateService {
     param: createAdsParams,
     data: createAdsBodyParams,
   ): Promise<Advertisements> {
-    return await this.adsRepository.registerAds(param, data);
+    try {
+      const exist = await this.adsRepository.existAccount({
+        id: param.id,
+      });
+      if (!exist) throw new NotFoundException('User account is not found');
+      return await this.adsRepository.registerAds(param, data);
+    } catch (error) {
+      throw new HttpException(error.response, error.response.statusCode);
+    }
   }
 }
