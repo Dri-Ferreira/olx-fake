@@ -49,8 +49,8 @@ model Advertisements {
   description     String  @db.VarChar()
   views           String
   status          String  @db.VarChar(255)
-  userId          User    @relation(fields: [user], references: [id], onDelete: Cascade)
-  user            String
+  User            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String
 
   @@map("advertisements")
 }
