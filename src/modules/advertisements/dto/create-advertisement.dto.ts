@@ -1,10 +1,7 @@
-import { createAdsBodyParams } from '../types/ads-params-types';
+// import { createAdsBodyParams } from '../types/ads-params-types';
 import { IsBoolean, IsNumber, IsString } from 'class-validator';
 
-export class CreateAdvertisementDto implements createAdsBodyParams {
-  @IsString()
-  user: string;
-
+export class CreateAdvertisementDto {
   @IsString()
   state: string;
 

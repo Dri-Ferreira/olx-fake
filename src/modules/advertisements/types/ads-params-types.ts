@@ -3,7 +3,6 @@ export type createAdsParams = {
 };
 
 export type createAdsBodyParams = {
-  user: string;
   state: string;
   category: string;
   images: string;

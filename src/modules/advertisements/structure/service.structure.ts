@@ -1,6 +1,12 @@
-import { createAdsBodyParams } from './../types/ads-params-types';
+import {
+  createAdsBodyParams,
+  createAdsParams,
+} from './../types/ads-params-types';
 import { Advertisements } from '@prisma/client';
 
 export interface ICreateAdvertisementsService {
-  execute(data: createAdsBodyParams): Promise<Partial<Advertisements>>;
+  execute(
+    param: createAdsParams,
+    data: createAdsBodyParams,
+  ): Promise<Partial<Advertisements>>;
 }
