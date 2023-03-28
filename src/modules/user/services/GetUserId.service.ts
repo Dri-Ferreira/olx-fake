@@ -12,6 +12,7 @@ export class GetUserIdService implements IGetUserIdService {
 
   async execute(params: GetIdParams): Promise<Partial<User>> {
     const user = await this.userRepository.getUserId(params);
+
     return { ...user, passwordHash: undefined };
   }
 }
