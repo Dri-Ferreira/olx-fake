@@ -31,8 +31,12 @@ export class AdsRepository implements IAdsRepository {
         id: param.id,
       },
       data: {
-        ads: {
-          push: [ads.id],
+        adverts: {
+          push: [
+            {
+              ...ads,
+            },
+          ],
         },
       },
     });
