@@ -15,7 +15,7 @@ model User {
   passwordHash   String           @db.VarChar(255)
   created_at     DateTime         @default(now()) @db.Timestamptz(6)
   updated_at     DateTime         @default(now()) @updatedAt @db.Timestamptz(6)
-  ads            String[]
+  adverts        Json[]
   Advertisements Advertisements[]
 
   @@map("user")
